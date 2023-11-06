@@ -1,0 +1,32 @@
+#This line attempts to import the OpenAI Gym library
+import gymnasium as gym 
+
+
+env = gym.make("CartPole-v1", render_mode="human")
+#This line creates the CartPole-v1 environment using OpenAI Gym. 
+#The "CartPole-v1" argument specifies the environment name.
+# And render_mode="human" is set to render the environment for human viewing.
+
+
+observation, info = env.reset(seed=42)
+#This line resets the environment to its initial state. 
+# The seed argument is set to 42, which is used to initialize the random number generator for reproducibility.
+
+
+for _ in range(1000):  #This for loop will run for 1000 iterations, which represents the number of steps in the environment.
+
+
+   action = env.action_space.sample()  
+   #This simulates taking random actions in the environment.
+   # this is where you would insert your policy
+
+
+   observation, reward, terminated, truncated, info = env.step(action)
+
+
+   if terminated or truncated: #Here, the code checks if the episode is terminated or truncated. 
+    #If either of these conditions is met, it proceeds to the following block
+      observation, info = env.reset()
+
+
+env.close()
